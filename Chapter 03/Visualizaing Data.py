@@ -107,10 +107,32 @@ def make_several_line_charts():
     plt.title("The Bias-Variance Tradeoff")
     plt.show()
 
+def make_scatter_plot():
+    """ 그림 3-7. 친구의 수와 사이트 체류 시간에 관한 산점도 """
+
+    friends = [ 70, 65, 72, 63, 71, 64, 60, 64, 67]
+    minutes = [175, 170, 205, 120, 220, 130, 105, 145, 190]
+    labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+
+    plt.scatter(friends, minutes)
+
+    # label each point
+    for label, friend_count, minute_count in zip(labels, friends, minutes):
+        plt.annotate(label,
+                     xy=(friend_count, minute_count), # put the label with its point
+                     xytext=(5, -5), # but slightly offset
+                     textcoords='offset points')
+
+    plt.title("Daily Minutes vs. Number of Friends")
+    plt.xlabel("# of friends")
+    plt.ylabel("daily minutes spent on the site")
+    plt.show()
+
 if __name__ == "__main__":
     
     # make_simple_line_chart()
     # make_simple_bar_chart()
     # make_histogram()    
     # make_misleading_y_axis(False)
-    make_several_line_charts()
+    # make_several_line_charts()
+    make_scatter_plot()
