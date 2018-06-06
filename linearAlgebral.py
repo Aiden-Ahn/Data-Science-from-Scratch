@@ -24,6 +24,12 @@ def vector_sum(vectors):
     """sums all corresponding elements"""
     return reduce(vector_add, vectors)
 
+def scalar_multiply(c, v):
+    return [c * v_i for v_i in v]
+
+def scalar_multiply_np(c, v):
+    return c * np.array(v)
+
 def runtime(f):
     from datetime import datetime 
     start_time = datetime.now() 
@@ -32,10 +38,8 @@ def runtime(f):
     print('{}'.format(time_elapsed), data)
 
 if __name__ == "__main__":
-    v = [x for x in range(1, 11,2)]
-    w = [y for y in range(11, 21,2)]
-    print(v)
-    print(w)
-    vectors = [v,w,v,w,v,w]
-    runtime(vector_sum(vectors))
-    runtime(np.sum([v,w,v,w,v,w], axis=0))
+    v = [5, 6, 7, 8]
+    scalar = 3
+
+    runtime(scalar_multiply(scalar, v))
+    runtime(scalar_multiply_np(scalar, v))
