@@ -24,6 +24,16 @@ def vector_sum(vectors):
     """sums all corresponding elements"""
     return reduce(vector_add, vectors)
 
+def scalar_multiply(c, v):
+    return [c * v_i for v_i in v]
+
+# this isn't right if you don't from __future__ import division
+def vector_mean(vectors):
+    """compute the vector whose i-th element is the mean of the
+    i-th elements of the input vectors"""
+    n = len(vectors)
+    return scalar_multiply(1/n, vector_sum(vectors))
+
 def runtime(f):
     from datetime import datetime 
     start_time = datetime.now() 
@@ -32,10 +42,8 @@ def runtime(f):
     print('{}'.format(time_elapsed), data)
 
 if __name__ == "__main__":
-    v = [x for x in range(1, 11,2)]
-    w = [y for y in range(11, 21,2)]
-    print(v)
-    print(w)
-    vectors = [v,w,v,w,v,w]
-    runtime(vector_sum(vectors))
-    runtime(np.sum([v,w,v,w,v,w], axis=0))
+    v = [1,2,3,4]
+    w = [-4,-3,-2,-1]
+
+    runtime(vector_mean([v,v,v,v]))
+    runtime(np.mean([v,v,v,v], axis=0))
