@@ -128,6 +128,26 @@ def make_scatter_plot():
     plt.ylabel("daily minutes spent on the site")
     plt.show()
 
+def make_scatterplot_axes(equal_axes=False):
+    """
+    그림 3-8. 축 간 공정한 비교를 할 수 없는 산점도
+    그림 3-9. 축 간 공정한 비교를 할 수 있는 산점도 """
+
+    test_1_grades = [ 99, 90, 85, 97, 80]
+    test_2_grades = [100, 85, 60, 90, 70]
+
+    plt.scatter(test_1_grades, test_2_grades)
+    plt.xlabel("test 1 grade")
+    plt.ylabel("test 2 grade")
+
+    if equal_axes:
+        plt.title("Axes Are Comparable")
+        plt.axis("equal")
+    else:
+        plt.title("Axes Aren't Comparable")
+
+    plt.show()
+
 if __name__ == "__main__":
     
     # make_simple_line_chart()
@@ -135,4 +155,5 @@ if __name__ == "__main__":
     # make_histogram()    
     # make_misleading_y_axis(False)
     # make_several_line_charts()
-    make_scatter_plot()
+    # make_scatter_plot()
+    make_scatterplot_axes(True)
