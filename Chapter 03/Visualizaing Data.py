@@ -84,9 +84,33 @@ def make_misleading_y_axis(mislead=True):
         plt.title("Not So Huge Anymore.")
     plt.show()
 
+def make_several_line_charts():
+    """ 그림 3-6. 여러 개의 선 그래프와 범례 동시에 그리기 """
+
+    variance     = [1,2,4,8,16,32,64,128,256]
+    bias_squared = [256,128,64,32,16,8,4,2,1]
+    total_error  = [x + y for x, y in zip(variance, bias_squared)]
+
+    xs = range(len(variance))
+
+    # we can make multiple calls to plt.plot
+    # to show multiple series on the same chart
+    plt.plot(xs, variance,     'g-',  label='variance')    # green solid line
+    plt.plot(xs, bias_squared, 'r-.', label='bias^2')      # red dot-dashed line
+    plt.plot(xs, total_error,  'b:',  label='total error') # blue dotted line
+
+    # because we've assigned labels to each series
+    # we can get a legend for free
+    # loc=9 means "top center"
+    plt.legend(loc=9)
+    plt.xlabel("model complexity")
+    plt.title("The Bias-Variance Tradeoff")
+    plt.show()
+
 if __name__ == "__main__":
     
-    make_simple_line_chart()
-    make_simple_bar_chart()
-    make_histogram()    
-    make_misleading_y_axis(False)
+    # make_simple_line_chart()
+    # make_simple_bar_chart()
+    # make_histogram()    
+    # make_misleading_y_axis(False)
+    make_several_line_charts()
