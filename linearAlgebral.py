@@ -34,6 +34,10 @@ def vector_mean(vectors):
     n = len(vectors)
     return scalar_multiply(1/n, vector_sum(vectors))
 
+def dot(v, w):
+    """v_1 * w_1 + ... + v_n * w_n"""
+    return sum(v_i * w_i for v_i, w_i in zip(v, w))
+
 def runtime(f):
     from datetime import datetime 
     start_time = datetime.now() 
@@ -45,5 +49,5 @@ if __name__ == "__main__":
     v = [1,2,3,4]
     w = [-4,-3,-2,-1]
 
-    runtime(vector_mean([v,v,v,v]))
-    runtime(np.mean([v,v,v,v], axis=0))
+    runtime(dot(v, w))
+    runtime(np.dot(v,w))
