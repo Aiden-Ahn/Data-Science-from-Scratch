@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+from collections import Counter
+
 import matplotlib.pyplot as plt
 
 def make_simple_line_chart():
@@ -55,8 +58,35 @@ def make_histogram():
     plt.title("Distribution of Exam 1 Grades")
     plt.show()
 
+def make_misleading_y_axis(mislead=True):
+    """
+    그림 3-4. y축이 오해를 불러일으키는 그래프,
+    그림 3-5. y축히 오해를 불러일으키지 않는 그래프
+    """
+
+    mentions = [500, 505]
+    years = [2013, 2014]
+
+    plt.bar([2012.6, 2013.6], mentions, 0.8)
+    plt.xticks(years)
+    plt.ylabel("# of times I heard someone say 'data science'")
+
+    # if you don't do this, matplotlib will label the x-axis 0, 1
+    # and then add a +2.013e3 off in the corner (bad matplotlib!)
+    plt.ticklabel_format(useOffset=False)
+
+    if mislead:
+        # misleading y-axis only shows the part above 500
+        plt.axis([2012.5,2014.5,499,506])
+        plt.title("Look at the 'Huge' Increase!")
+    else:
+        plt.axis([2012.5,2014.5,0,550])
+        plt.title("Not So Huge Anymore.")
+    plt.show()
+
 if __name__ == "__main__":
     
     make_simple_line_chart()
     make_simple_bar_chart()
     make_histogram()    
+    make_misleading_y_axis(False)
